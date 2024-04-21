@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useDataService } from '../services/DataService';
 import { baseURL } from '../config/config';
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import AssignDesg from './AssignDesg';
 import { useLoaderService } from '../services/LoaderService';
 import AssignDesgComponent from './AssignDesgComponent';
@@ -117,20 +117,23 @@ export default function ViewEmployeeDetails() {
                 console.log("Response from server", response)
                 setLoadingFlag(false)
                 if (response.data.success == true) {
-                    toast.success(response.data.message ? response.data.message : 'User Data Fetched Succesfull...')
+                    //toast.success(response.data.message ? response.data.message : 'User Data Fetched Succesfull...')
+                    alert(response.data.message ? response.data.message : 'User Data Fetched Succesfull...')
                     let data = response.data.data
                     setUserInfromation(prevValue => ({
                         ...prevValue, data
                     }))
                     //console.log('userInfo =>',userInfromation)
                 } else {
-                    toast.warning(response.data.message)
+                    alert(response.data.message)
+                    //toast.warning(response.data.message)
                     setUserInfromation([])
                 }
             }).catch((err) => {
                 setLoadingFlag(false)
                 console.log(e)
-                toast.error("Something went wrong")
+                alert("Something went wrong")
+                //toast.error("Something went wrong")
             })
         }
     }
@@ -254,7 +257,7 @@ export default function ViewEmployeeDetails() {
                     </AssignDesg> */}
                 </div>
             </div>
-            <ToastContainer></ToastContainer>
+            {/* <ToastContainer></ToastContainer> */}
         </>
     )
 }

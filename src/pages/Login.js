@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { baseURL } from "../config/config";
 import { useNavigate } from "react-router-dom";
@@ -91,7 +91,8 @@ export default function Login({isLoggedIn,setLoginFlag,setLoginUserData}) {
       validateInput('username')
       validateInput('password')
       if(errorPair.hasError===true || passwordError.hasPasswordError ===true){
-        toast.error(errorPair.hasError?errorPair.errorMessgae : passwordError.passwordErrorMessage)
+        alert(errorPair.hasError?errorPair.errorMessgae : passwordError.passwordErrorMessage)
+        //toast.error(errorPair.hasError?errorPair.errorMessgae : passwordError.passwordErrorMessage)
       }else{
       setLoadingFlag(true)
         let request = {
@@ -106,12 +107,14 @@ export default function Login({isLoggedIn,setLoginFlag,setLoginUserData}) {
             setLoginFlag(true)
             setSharedData(JSON.stringify(response.data.data[0]))
             setLoginUserData(response.data.data[0])
-            toast.success("Logged in Successfully")
+            alert("Logged in Successfully")
+            //toast.success("Logged in Successfully")
             navigate('/dashboard')
           }else{
             setLoginFlag(false)
             setLoginUserData(response.data.data[0])
-            toast.error("Invalid Username or Password")
+            alert("Invalid Username or Password")
+            // toast.error("Invalid Username or Password")
           }
         }).catch(err=>{
           console.log("Error in login ", err)
@@ -119,7 +122,8 @@ export default function Login({isLoggedIn,setLoginFlag,setLoginUserData}) {
           if(err){
             setLoginFlag(false)
             setLoginUserData([])
-            toast.error("Server Error Please try again after some time")
+            alert("Server Error Please try again after some time")
+            // toast.error("Server Error Please try again after some time")
           }
         })
       }
@@ -201,7 +205,7 @@ export default function Login({isLoggedIn,setLoginFlag,setLoginUserData}) {
             </p> */}
           </div>
         </div>
-        <ToastContainer></ToastContainer>
+        {/* <ToastContainer></ToastContainer> */}
       </>
     )
   }

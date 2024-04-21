@@ -1,7 +1,7 @@
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { baseURL } from '../config/config';
 import { useLoaderService } from '../services/LoaderService';
@@ -234,7 +234,8 @@ export default function AddEmployee() {
         event.preventDefault();
         if (firstName.length == 0 || lastName.length == 0 || email.length == 0 || password.length == 0
             || role.length == 0 || permissionConsent.length == 0 || username.length === 0) {
-            toast.error("All fields are required!")
+            //toast.error("All fields are required!")
+            alert("All fields are required!")
         }
         else if (!formError.firstNameError.hasError || !formError.lastNameError.hasError || !formError.emailError.hasError
             || !formError.passwordError.hasError || !formError.roleError.hasError || !formError.consentError.hasError ||
@@ -252,16 +253,19 @@ export default function AddEmployee() {
             await axios.post(url, requestPayload).then((response) => {
                 setLoadingFlag(false)
                 if (response.data.success === true) {
-                    toast.success('User created successfully...');
+                    alert('User created successfully...')
+                    //toast.success('User created successfully...');
                     onreset(event)
                 } else {
-                    toast.warning(response.data.message)
+                    alert(response.data.message)
+                    // toast.warning(response.data.message)
                 }
             })
                 .catch((err) => {
                     setLoadingFlag(false)
                     if (err) {
-                        toast.error("Something went wrong!");
+                        alert("Something went wrong!")
+                        //toast.error("Something went wrong!");
                     }
                 })
         }
@@ -454,7 +458,7 @@ export default function AddEmployee() {
                     </div>
                 </main>
             </div>
-            <ToastContainer></ToastContainer>
+            {/* <ToastContainer></ToastContainer> */}
         </>
     )
 }
