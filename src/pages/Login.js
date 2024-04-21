@@ -92,6 +92,7 @@ export default function Login({isLoggedIn,setLoginFlag,setLoginUserData}) {
       validateInput('password')
       if(errorPair.hasError===true || passwordError.hasPasswordError ===true){
         alert(errorPair.hasError?errorPair.errorMessgae : passwordError.passwordErrorMessage)
+        //remove toast
         //toast.error(errorPair.hasError?errorPair.errorMessgae : passwordError.passwordErrorMessage)
       }else{
       setLoadingFlag(true)
